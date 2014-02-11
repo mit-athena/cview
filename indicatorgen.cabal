@@ -1,0 +1,16 @@
+Name:                IndicatorGen
+Version:             0.1
+Synopsis:            Makes an svg percentage occupation indicator
+License:             GPL-3
+Author:              Jesse Selover
+Maintainer:          jselover@mit.edu
+Stability:           Experimental
+Build-type:          Simple
+Cabal-version:       >=1.2
+
+Executable indicator
+  hs-source-dirs: src
+  main-is: Main.hs
+
+  Build-depends: base                        >= 4
+               , blaze-svg                   >= 0.3.3
