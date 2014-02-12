@@ -2,7 +2,7 @@
 import           Control.Monad                  (when)
 import           Data.List                      (intercalate)
 import           Data.String                    (fromString)
-import           Text.Blaze.Svg                 (m, z)
+import           Text.Blaze.Svg                 (l, m, z)
 import           Text.Blaze.Svg.Internal        (appendToPath)
 import           Text.Blaze.Svg.Renderer.String (renderSvg)
 import           Text.Blaze.Svg11               ((!))
@@ -20,7 +20,7 @@ circleSvg cur max = S.docTypeSvg ! A.version "1.1" ! A.width "100" ! A.height "1
   -- Green segment
   when (cur > 0) $ S.path ! A.d (arcPath 0 (fromInteger cur / fromInteger max)) ! A.fill "#00FF00"
   -- Red segment
-  -- when (cur < max) $ S.path ! A.d (arcPath (fromInteger cur / fromInteger max) 1) ! A.fill "#FF0000"
+  when (cur < max) $ S.path ! A.d (arcPath (fromInteger cur / fromInteger max) 1) ! A.fill "#FF0000"
   -- White circle
   S.circle ! A.cx "50" ! A.cy "50" ! A.r "40" ! A.fill "#FFFFFF"
   -- Number overlay
@@ -54,5 +54,6 @@ arcPath start end = S.mkPath $ do
       end_y = 50 - (50 * cos (2*pi*end))
   m start_x start_y
   a rx ry x_axis_rotation large_arc_flag sweep_flag end_x end_y
+  l 50 50
   z
 
