@@ -40,7 +40,7 @@ main = do
   let ocLines = lines occupanciesStr
       occupanciesLists = map (\l -> [(!! 4), (!! 5)] <*> [words l]) ocLines -- Can error
       occupanciesPreBarker = map getInts occupanciesLists -- Can error
-      occupancies = map (freCurToCurMax) $ mergeOccupancies (head occupanciesPreBarker) (head . tail $ occupanciesPreBarker) : (tail . tail $ occupanciesPreBarker)
+      occupancies = map (freCurToCurMax) $ mergeOccupancies (head occupanciesPreBarker) (head . tail $ occupanciesPreBarker) : (tail . tail $ occupanciesPreBarker) -- Can error
   putStrLn $ show occupanciesLists
   putStrLn $ show occupancies
   void $ runX ( readDocument [] "base.svg"
