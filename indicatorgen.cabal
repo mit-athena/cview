@@ -1,7 +1,7 @@
 Name:                IndicatorGen
 Version:             0.1
 Synopsis:            Makes an svg percentage occupation indicator
-License:             GPL-3
+License:             MIT
 Author:              Jesse Selover
 Maintainer:          jselover@mit.edu
 Stability:           Experimental

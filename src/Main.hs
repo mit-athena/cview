@@ -1,4 +1,6 @@
+{- Copyright (C) 2014  Jesse Selover <jselover@mit.edu> -}
 {-# LANGUAGE OverloadedStrings #-}
+
 import           Control.Applicative            ((<*>))
 import           Control.Monad                  (void, when)
 import           Data.List                      (foldl1', intercalate)
