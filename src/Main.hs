@@ -53,9 +53,11 @@ main = do
     freCurToCurMax :: (Integer, Integer) -> (Integer, Integer)
     freCurToCurMax (fre, cur) = (cur, fre+cur)
 
+-- | Curried addCircle
 cAddCircle :: (ArrowXml a, Show s) => ((Integer, Integer), (s, s)) -> a XmlTree XmlTree
 cAddCircle ((a, b), (c, d)) = addCircle a b c d
 
+-- | Produces an arrow which adds a circle to an svg file
 addCircle :: (ArrowXml a, Show s) => Integer -- Current occupancy
           -> Integer -- Maximum occupancy
           -> s -- x coord
@@ -109,7 +111,7 @@ circleSvg cur max = S.g $ do -- no doctype
             A.x "50" !
             A.style "text-anchor: middle; font-family: Droid Sans; font-size: 33;" $ fromString $ show (max - cur)
 
--- | Elliptical Arc
+-- | Elliptical Arc path command
 a :: Show a => a -> a -> a -> a -> a -> a -> a -> S.Path
 a rx ry xar laf sf ex ey = appendToPath
   [ "A "
@@ -122,8 +124,9 @@ a rx ry xar laf sf ex ey = appendToPath
   , show ey, " "
   ]
 
-arcPath :: Double
-        -> Double
+-- | Create an arc segment from Start to End around a circle
+arcPath :: Double -- Start
+        -> Double -- End
         -> S.AttributeValue
 arcPath start end = S.mkPath $ do
   let large_arc_flag = if (end - start) < 0.5 then 0 else 1
