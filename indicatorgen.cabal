@@ -14,3 +14,5 @@ Executable indicator
 
   Build-depends: base                        >= 4
                , blaze-svg                   >= 0.3.3
+               , hxt                         >= 9.3
+               , process                     >= 1.1
