@@ -110,7 +110,7 @@ circleSvg cur max = S.g $ do -- no doctype
   -- Number overlay
   S.text_ ! A.y "60" !
             A.x "50" !
-            A.style "text-anchor: middle; font-family: Droid Sans; font-size: 33;" $ fromString $ show (max - cur)
+            A.style "text-anchor: middle; font-family: Droid Sans; font-size: 2em;" $ fromString $ show (max - cur)
 
 boolToDigit :: Bool -> String
 boolToDigit True = "1"
