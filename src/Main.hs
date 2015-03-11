@@ -3,6 +3,7 @@
 
 import           Control.Applicative            ((<*>))
 import           Control.Monad                  (void, when)
+import           Data.Bool                      (not)
 import           Data.List                      (foldl1', intercalate)
 import           Data.String                    (fromString)
 import           System.Process                 (readProcess)
@@ -111,15 +112,19 @@ circleSvg cur max = S.g $ do -- no doctype
             A.x "50" !
             A.style "text-anchor: middle; font-family: Droid Sans; font-size: 33;" $ fromString $ show (max - cur)
 
+boolToDigit :: Bool -> String
+boolToDigit True = "1"
+boolToDigit False = "0"
+
 -- | Elliptical Arc path command
-a :: Show a => a -> a -> a -> a -> a -> a -> a -> S.Path
+a :: Show a => a -> a -> a -> Bool -> Bool -> a -> a -> S.Path
 a rx ry xar laf sf ex ey = appendToPath
   [ "A "
   , show rx, ", "
   , show ry, ", "
   , show xar, ", "
-  , show laf, ", "
-  , show sf, ", "
+  , boolToDigit laf, ", "
+  , boolToDigit sf, ", "
   , show ex, ", "
   , show ey, " "
   ]
@@ -129,8 +134,8 @@ arcPath :: Double -- Start
         -> Double -- End
         -> S.AttributeValue
 arcPath start end = S.mkPath $ do
-  let large_arc_flag = if (end - start) < 0.5 then 0 else 1
-      sweep_flag = 1
+  let large_arc_flag = not ((end - start) < 0.5)
+      sweep_flag = True
       rx = 50
       ry = 50
       x_axis_rotation = 0
